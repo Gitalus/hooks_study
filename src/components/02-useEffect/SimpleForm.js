@@ -24,7 +24,7 @@ export const SimpleForm = () => {
     function handleInputChange({ target }) {
         setFormState({
             ...formState,
-            [ target.name ]: target.value
+            [ target.name ] : target.value
         })
     }
 
