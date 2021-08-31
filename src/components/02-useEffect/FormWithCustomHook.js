@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './effects.css'
-import { Message } from './Message';
 
-export const SimpleForm = () => {
+export const FormWithCustomHook = () => {
 
     const [formState, setFormState] = useState({
         name: '',
-        email: ''
+        email: '',
+        password: ''
     });
+    
+    const { name, email, password } = formState;
 
     function handleInputChange({ target }) {
         setFormState({
@@ -16,22 +18,10 @@ export const SimpleForm = () => {
         })
     }
     
-    const { name, email } = formState;
-
-
-    useEffect( () => {
-    }, [] );
-
-    useEffect( () => {
-    }, [formState] );
-
-    useEffect( () => {
-    }, [email] );
-
 
     return (
         <>
-            <h1>useEffect</h1>
+            <h1>FormWithCustomHook</h1>
             <hr />
 
             <div className="form-group">
@@ -43,7 +33,7 @@ export const SimpleForm = () => {
                     autoComplete="off"
                     value={ name }
                     onChange={ handleInputChange }
-                />
+                    />
             </div>
             <br />
 
@@ -56,10 +46,21 @@ export const SimpleForm = () => {
                     autoComplete="off"
                     value={ email }
                     onChange={ handleInputChange }
-                />
+                    />
+            </div>
+            <br />
+
+            <div className="form-group">
+                <input 
+                    type="password" 
+                    name="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={ password }
+                    onChange={ handleInputChange }
+                    />
             </div>
 
-            { name === '123' && <Message /> }
         </>
     )
 }
