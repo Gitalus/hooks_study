@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../02-useEffect/effects.css';
 
 export const FocusScreen = () => {
 
+    // El ref puede cambiar a lo que apunta sin necesidad de disparar una renderización
+    const inputRef = useRef();
+
     const handleClick = () => {
         // Changed to select, so we select the input that is already in
-        document.querySelector('input').select();
+        inputRef.current.select();
     }
 
     return (
@@ -14,6 +17,7 @@ export const FocusScreen = () => {
             <hr />
 
             <input 
+                ref={ inputRef }
                 type="text"
                 className="form-control" 
                 placeholder="Su nombre"
