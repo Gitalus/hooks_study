@@ -5,6 +5,7 @@ import reactDom from 'react-dom';
 // import { CounterWithCustomHook } from './components/01-useState/CounterWithCustomHook';
 // import { SimpleForm } from './components/02-useEffect/SimpleForm';
 // import { HookApp } from './HookApp';
-import { MultipleCustomHooks } from './components/03-examples/MultipleCustomHooks';
+// import { MultipleCustomHooks } from './components/03-examples/MultipleCustomHooks';
+import { FocusScreen } from './components/04-useRef/FocusScreen';
 
-reactDom.render(<MultipleCustomHooks />, document.getElementById('root'));
+reactDom.render(<FocusScreen />, document.getElementById('root'));
