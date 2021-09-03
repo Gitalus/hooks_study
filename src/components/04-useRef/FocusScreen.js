@@ -4,7 +4,8 @@ import '../02-useEffect/effects.css';
 export const FocusScreen = () => {
 
     const handleClick = () => {
-        document.querySelector('input').focus();
+        // Changed to select, so we select the input that is already in
+        document.querySelector('input').select();
     }
 
     return (
