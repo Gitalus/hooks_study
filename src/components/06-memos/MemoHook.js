@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useCounter } from '../../hooks/useCounter';
 import '../02-useEffect/effects.css'
 
@@ -19,13 +19,17 @@ export const MemoHook = () => {
         return `${ iteraciones } iteraciones realizadas`;
     }
 
+
+    // Recibe un callBack y las dependecias como en useEffect
+    const memoProcesoPesado = useMemo(() => procesoPesado(counter), [ counter ]);
+
     return (
         <div>
             <h1>MemoHook</h1>
             <h3>Counter: <small>{ counter }</small></h3>
             <hr />
 
-            <p>{ procesoPesado( counter ) }</p>
+            <p>{ memoProcesoPesado }</p>
 
             <button 
                 className="btn btn-primary"
