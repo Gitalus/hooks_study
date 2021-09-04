@@ -15,6 +15,7 @@ export const Layout = () => {
     const pTag = useRef();
     const [boxSize, setBoxSize] = useState({});
 
+    // Funciona como useEffect, pero se ejecuta luego de que se renderizó todo
     useLayoutEffect(() => {
         setBoxSize( pTag.current.getBoundingClientRect() );
     }, [quote])
