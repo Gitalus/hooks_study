@@ -2,14 +2,22 @@ import React, { useCallback, useState } from 'react';
 import { ShowIncrement } from './ShowIncrement';
 
 import '../02-useEffect/effects.css';
+import { useEffect } from 'react/cjs/react.development';
 
 export const CallbackHook = () => {
 
     const [counter, setCounter] = useState(10);
 
-    const increment = useCallback( () => {
-        setCounter( c => c + 1);
+    const increment = useCallback( ( num = 1 ) => {
+        setCounter( c => c + num);
     }, [ setCounter ])
+
+
+    // También se usa con useEffect cuando queremos que una dependencia sea la función, pero que no se dispare
+    // cada vez que renderizamos un componente
+    useEffect(() => {
+        // ??
+    }, [increment])
 
     // Cuando volvemos a renderizar el componente, esta función se vuelve a guardar
     // en un nuevo espacio de memoria, por lo tanto se considera que cambia.
