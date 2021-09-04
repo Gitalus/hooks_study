@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useCounter } from '../../hooks/useCounter';
 import '../02-useEffect/effects.css'
+import { procesoPesado } from '../helpers/procesoPesado';
 
 export const MemoHook = () => {
 
@@ -10,14 +11,6 @@ export const MemoHook = () => {
 
     const { counter, increment } = useCounter( 5000 );
     const [show, setShow] = useState(true);
-
-    const procesoPesado = ( iteraciones ) => {
-        for ( let i = 0; i < iteraciones; i++) {
-            console.log('Ahí vamos...');
-        }
-
-        return `${ iteraciones } iteraciones realizadas`;
-    }
 
 
     // Recibe un callBack y las dependecias como en useEffect
