@@ -1,5 +1,5 @@
-// import React from 'react';
-// import reactDom from 'react-dom';
+import React from 'react';
+import reactDom from 'react-dom';
 // import { Padre } from './components/07-tarea-memo/Padre';
 // // import { CallbackHook } from './components/06-memos/CallbackHook';
 // // import { MemoHook } from './components/06-memos/MemoHook';
@@ -13,8 +13,6 @@
 // // import { RealExampleRef } from './components/04-useRef/RealExampleRef';
 // // import { Layout } from './components/05-useLayoutEffect/Layout';
 // // import { Memorize } from './components/06-memos/Memorize';
+import { TodoApp } from './components/08-useReducer/TodoApp';
 
-// reactDom.render(<Padre />, document.getElementById('root'));
-
-
-import './components/08-useReducer/intro-reducer'
+reactDom.render(<TodoApp />, document.getElementById('root'));
