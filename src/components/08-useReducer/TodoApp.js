@@ -1,14 +1,19 @@
 import React, { useReducer } from 'react';
 import { todoReducer } from './todoReducer';
 
+import { useForm } from '../../hooks/useForm';
 import './style.css';
 
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Aprender React',
-    done: false
-}]
+// init evita que se ejecute cada vez el useReducer, solo si hay cambios se vuelve a ejecutar
+// usando el valor inicial
+const init = () => {
+    return [{
+        id: new Date().getTime(),
+        desc: 'Aprender React',
+        done: false
+    }];
+}
 
 /* Los reducer pueden ser intercambiables con los useState, pero se recomienda
 que usemos useReducer cuando tenemos muchas acciones que realizar con los estados.
@@ -17,7 +22,31 @@ export const TodoApp = () => {
 
     // Crear el reducer en otro archivo ya que se puede agrandar mucho.
     // Esto devuelve un state de inmediato, usando el reducer y el initialState
-    const [todos] = useReducer(todoReducer, initialState);
+    const [ todos, dispatch ] = useReducer(todoReducer, [], init);
+
+    const [ { description }, handleInputChange, reset ] = useForm({
+        description: ''
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (description.trim().length <= 1 ) return;
+
+        const newTodo = {
+            id: new Date().getTime(),
+            desc: description,
+            done: false
+        };
+
+        const action = {
+            type: 'add',
+            payload: newTodo
+        };
+
+        dispatch( action );
+        reset();
+    }
 
     return (
         <div>
@@ -44,17 +73,20 @@ export const TodoApp = () => {
                     <h4>Agregar Todo</h4>
                     <hr />
 
-                    <form>
+                    <form onSubmit={ handleSubmit }>
                         <input 
                             type="text"
                             name="description"
                             className="form-control"
                             placeholder="Aprender..."
                             autoComplete="off"
+                            value={ description }
+                            onChange={ handleInputChange }
                         />
 
                         <button 
-                            className="btn btn-outline-primary mt-1"
+                            type="submit"
+                            className="btn btn-outline-primary mt-1 w-100"
                         >
                                 Agregar
                         </button>
