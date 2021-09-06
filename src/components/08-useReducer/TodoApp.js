@@ -17,19 +17,50 @@ export const TodoApp = () => {
 
     // Crear el reducer en otro archivo ya que se puede agrandar mucho.
     // Esto devuelve un state de inmediato, usando el reducer y el initialState
-    const [state] = useReducer(todoReducer, initialState);
+    const [todos] = useReducer(todoReducer, initialState);
 
     return (
         <div>
-            <h1>Todo App</h1>
+            <h1>TodoApp ( { todos.length } )</h1>
             <hr />
 
-            <ul>
-                <li>Hola</li>
-                <li>Mundo</li>
-                <li>Hola Denuevo</li>
-            </ul>
+            <div className="row">
+                <div className="col-7">
+                    <ul className="list-group list-group-flush">
+                        {
+                            todos.map((todo, idx) => (
+                                <li 
+                                key={ todo.id }
+                                className="list-group-item"
+                                >
+                                <p className="text-center">{ idx + 1}. { todo.desc }</p>
+                                <button className="btn btn-danger">Borrar</button>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+                <div className="col-5">
+                    <h4>Agregar Todo</h4>
+                    <hr />
 
+                    <form>
+                        <input 
+                            type="text"
+                            name="description"
+                            className="form-control"
+                            placeholder="Aprender..."
+                            autoComplete="off"
+                        />
+
+                        <button 
+                            className="btn btn-outline-primary mt-1"
+                        >
+                                Agregar
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
