@@ -6,7 +6,7 @@ export const TodoAdd = ({ handleAddTodo }) => {
     const [ { description }, handleInputChange, reset ] = useForm({
         description: ''
     })
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -22,7 +22,6 @@ export const TodoAdd = ({ handleAddTodo }) => {
         reset();
     }
     
-
 
     return (
         <>

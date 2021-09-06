@@ -26,12 +26,11 @@ export const TodoApp = () => {
     }, [todos])
 
     const handleDelete = (todoId) => {
-        const action = {
+
+        dispatch({
             type: 'delete',
             payload: todoId
-        }
-
-        dispatch( action );
+        });
     }
 
     const handleToggle = (todoId) => {
