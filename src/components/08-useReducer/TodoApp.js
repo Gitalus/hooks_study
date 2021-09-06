@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { todoReducer } from './todoReducer';
 
 import { useForm } from '../../hooks/useForm';
@@ -8,11 +8,7 @@ import './style.css';
 // init evita que se ejecute cada vez el useReducer, solo si hay cambios se vuelve a ejecutar
 // usando el valor inicial
 const init = () => {
-    return [{
-        id: new Date().getTime(),
-        desc: 'Aprender React',
-        done: false
-    }];
+    return JSON.parse(localStorage.getItem('todos')) || [];
 }
 
 /* Los reducer pueden ser intercambiables con los useState, pero se recomienda
@@ -27,6 +23,10 @@ export const TodoApp = () => {
     const [ { description }, handleInputChange, reset ] = useForm({
         description: ''
     })
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify( todos ));
+    }, [todos])
 
     const handleSubmit = (e) => {
         e.preventDefault();
