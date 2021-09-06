@@ -3,6 +3,7 @@ import { todoReducer } from './todoReducer';
 
 import { useForm } from '../../hooks/useForm';
 import './style.css';
+import { TodoList } from './TodoList';
 
 
 // init evita que se ejecute cada vez el useReducer, solo si hay cambios se vuelve a ejecutar
@@ -71,26 +72,10 @@ export const TodoApp = () => {
 
             <div className="row">
                 <div className="col-7">
-                    <ul className="list-group list-group-flush">
-                        {
-                            todos.map((todo, idx) => (
-                                <li 
-                                key={ todo.id }
-                                className="list-group-item"
-                                >
-                                <p 
-                                    className={ `${ todo.done && 'complete' }` }
-                                    onClick={ () => handleToggle(todo.id) }
-                                >
-                                    { idx + 1}. { todo.desc }
-                                </p>
-                                <button 
-                                    className="btn btn-danger"
-                                    onClick={ () => handleDelete(todo.id) }>Borrar</button>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <TodoList 
+                        handleToggle={ handleToggle }
+                        handleDelete={ handleDelete }
+                        todos={ todos }/>
                 </div>
                 <div className="col-5">
                     <h4>Agregar Todo</h4>
