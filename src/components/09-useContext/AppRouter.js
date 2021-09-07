@@ -4,6 +4,7 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
+import { NavBar } from './NavBar';
 import { AboutScreen } from './AboutScreen';
 import { HomeScreen } from './HomeScreen';
 import { LoginScreen } from './LoginScreen';
@@ -12,6 +13,10 @@ export const AppRouter = () => {
     return (
         <Router>
             <div>
+
+                <NavBar />
+
+
                 <Switch>
                     {/* Si se pone el home primero, cualquier ruta que pongamos
                     nos redigirá al home, ya que devuelve la primera coincidencia,
